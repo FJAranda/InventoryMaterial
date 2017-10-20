@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Inventory</string>
+    <string name="tvSignIn">Iniciar Sesion</string>
+    <string name="tvUser">Nombre de usuario / Correo electronico</string>
+    <string name="tvPassword">Contraseña</string>
+    <string name="cbRemember">Recordar Usuario</string>
+    <string name="tvSignUp"><u>Registrarse</u></string>
+    <string name="btnGoogleSign">Google</string>
+    <string name="btnFacebookSign">Iniciar Sesion con Facebook</string>
+    <string name="btnSignUp"><u>Registrarse</u></string>
+    <string name="tvName">Nombre</string>
+    <string name="tvCreationDate">Fecha de creación</string>
+    <string name="tvDescription">Descripción</string>
+    <string name="btnChange">Cambiar Estado</string>
+</resources>

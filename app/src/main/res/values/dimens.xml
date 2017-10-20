@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <dimen name="ll_login_padding">32dp</dimen>
+    <dimen name="tvSignIn_margin">24dp</dimen>
+    <dimen name="btnSignIn_margin">64dp</dimen>
+    <dimen name="ll_sign_options_padding">8dp</dimen>
+    <dimen name="imgDashboardHeight">0dp</dimen>
+    <dimen name="imgDashboardWidth">0dp</dimen>
+</resources>
