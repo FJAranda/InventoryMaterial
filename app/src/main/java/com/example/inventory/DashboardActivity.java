@@ -66,7 +66,9 @@ public class DashboardActivity extends AppCompatActivity {
                     intent = new Intent(DashboardActivity.this, ProductActivity.class);
                     break;
             }
-            startActivity(intent);
+            if (intent != null) {
+                startActivity(intent);
+            }
         }
     }
 }

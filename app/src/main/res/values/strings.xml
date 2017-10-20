@@ -12,4 +12,14 @@
     <string name="tvCreationDate">Fecha de creación</string>
     <string name="tvDescription">Descripción</string>
     <string name="btnChange">Cambiar Estado</string>
+    <string name="tvNotas">Notas</string>
+    <string name="tvUrl">Url</string>
+    <string name="tvF_compra">F. Compra</string>
+    <string name="tvPrecio">Precio</string>
+    <string name="tvTipo">Tipo</string>
+    <string name="tvSubcategoria">Subcategoria</string>
+    <string name="tvCategoria">Categoria</string>
+    <string name="tvModelo">Modelo</string>
+    <string name="tvVendedor">Vendedor</string>
+    <string name="tvSerial">Serial</string>
 </resources>
