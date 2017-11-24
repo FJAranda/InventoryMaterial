@@ -1,11 +1,16 @@
-package com.example.inventory;
+package com.example.inventoryMVP;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.GridLayout;
 import android.widget.ImageView;
+
+import com.example.inventoryMVP.ui.dependency.DependencyActivity;
 
 /**
  * Dashboard
@@ -53,6 +58,26 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_activity_dashboard, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_account_settings:
+                startActivity(new Intent(DashboardActivity.this, AccountSettingsActivity.class));
+                break;
+            case R.id.action_general_settings:
+                startActivity(new Intent(DashboardActivity.this, GeneralSettingsActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     class ClickListenerDashboard implements View.OnClickListener{
 
         @Override
@@ -65,10 +90,27 @@ public class DashboardActivity extends AppCompatActivity {
                 case 1:
                     intent = new Intent(DashboardActivity.this, ProductActivity.class);
                     break;
+                case 2:
+                    intent = new Intent(DashboardActivity.this, DependencyActivity.class);
+                    break;
+                case 3:
+                    intent = new Intent(DashboardActivity.this, SectorActivity.class);
+                    break;
             }
             if (intent != null) {
                 startActivity(intent);
             }
         }
     }
+
+    /*
+    private void generateid(int i, ImageView iv){
+        switch (images[i]){
+            case R.drawable.inventory:
+                INVENTORY = View.generateViewId();
+                iv.setId(INVENTORY);
+                break;
+        }
+    }
+    */
 }

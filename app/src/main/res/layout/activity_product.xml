@@ -15,7 +15,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.inventory.ProductActivity"
+    tools:context="com.example.inventoryMVP.ProductActivity"
     android:background="@color/colorPrimaryLogin">
 <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"

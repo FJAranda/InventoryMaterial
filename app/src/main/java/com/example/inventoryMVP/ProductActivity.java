@@ -1,13 +1,13 @@
-package com.example.inventory;
+package com.example.inventoryMVP;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class InventoryActivity extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory);
+        setContentView(R.layout.activity_product);
     }
 }

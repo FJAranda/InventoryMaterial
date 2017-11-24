@@ -1,8 +1,10 @@
-package com.example.inventory;
+package com.example.inventoryMVP;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.inventoryMVP.ui.login.LoginViewImplement;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -25,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent mainIntent = new Intent().setClass(
-                        SplashActivity.this, LoginActivity.class);
+                        SplashActivity.this, LoginViewImplement.class);
                 startActivity(mainIntent);
                 finish();
             }

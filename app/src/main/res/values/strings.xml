@@ -22,4 +22,17 @@
     <string name="tvModelo">Modelo</string>
     <string name="tvVendedor">Vendedor</string>
     <string name="tvSerial">Serial</string>
+    <string name="enabled">Activado</string>
+    <string name="tvSectorDefault">Sector por defecto</string>
+    <string name="menu_save">Guardar</string>
+    <string name="pref_category">Preferencias Generales</string>
+    <string name="titNumColum">Número de columnas</string>
+    <string name="action_account_settings">Ajustes de Cuenta</string>
+    <string name="action_general_settings">Ajustes Generales</string>
+    <string name="errorUserEmpty">El usuario no puede ser vacio.</string>
+    <string name="errorPasswordEmpty">El password no puede ser vacio.</string>
+    <string name="errorPassword">El usuario o la contraseña no son correctos.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

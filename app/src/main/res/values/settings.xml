@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_title_showimage">Mostrar Imagenes</string>
+    <string name="sumNumColums">Número de columnas que se mostraran en los listados</string>
+    <string name="pref_aboutus">Sobre Nosotros</string>
+    <string-array name="pref_entries_numcolum">
+        <item>1 Columna</item>
+        <item>2 Columna</item>
+        <item>3 Columna</item>
+        <item>4 Columna</item>
+    </string-array>
+
+    <string-array name="pref_entriesvalues_numcolum">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+</resources>

@@ -4,14 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.inventoryMVP.SplashActivity"
-    android:background="@color/colorPrimary">
-
-    <ImageView
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:src="@drawable/logo"
-        android:layout_gravity="center"
-        />
+    android:orientation="vertical"
+    tools:context="com.example.inventoryMVP.ui.dependency.DependencyActivity">
 
 </FrameLayout>

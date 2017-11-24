@@ -23,4 +23,5 @@
     <string name="tvModelo">Model</string>
     <string name="tvVendedor">Vendor</string>
     <string name="tvSerial">Serial</string>
+    <string name="enabled">Enabled</string>
 </resources>
