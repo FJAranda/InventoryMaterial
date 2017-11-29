@@ -16,4 +16,9 @@ public class AddDependencyPresenter implements AddDependencyContract.Presenter {
     public void validateDependency(String s, String toString, String string) {
 
     }
+
+    @Override
+    public void validateDependency(String nombre, String nombreCorto, String descripcion, int id) {
+
+    }
 }

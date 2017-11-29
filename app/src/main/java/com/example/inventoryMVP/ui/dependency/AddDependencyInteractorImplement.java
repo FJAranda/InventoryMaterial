@@ -28,4 +28,8 @@ public class AddDependencyInteractorImplement implements AddDependencyInteractor
         }*/
         DependencyRepository.getInstance().tryAddDependency(nombre, nombreCorto, descripcion);
     }
+
+    public void validateDependency(String nombre, String nombreCorto, String descripcion, int id, AddEditPresenter addEditPresenter) {
+        DependencyRepository.getInstance().tryModifyDependency(nombre, nombreCorto, descripcion, id);
+    }
 }

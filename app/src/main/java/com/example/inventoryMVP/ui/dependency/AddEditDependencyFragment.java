@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.inventoryMVP.R;
 import com.example.inventoryMVP.pojo.Dependency;
 import com.example.inventoryMVP.ui.base.BasePresenter;
+import com.example.inventoryMVP.utils.AddEdit;
 
 public class AddEditDependencyFragment extends Fragment implements AddDependencyContract.View, AddDependencyInteractor.OnAddDependencyFinishedListener {
     public static final String TAG = "addeditdependency";
@@ -20,6 +21,8 @@ public class AddEditDependencyFragment extends Fragment implements AddDependency
     private TextInputLayout tilName;
     private TextInputLayout tilShortName;
     private TextInputLayout tilDescription;
+    private AddEdit addEdit;
+    private Dependency d;
 
     public static AddEditDependencyFragment newInstance(Bundle arguments) {
         AddEditDependencyFragment editDependency = new AddEditDependencyFragment();
@@ -37,18 +40,24 @@ public class AddEditDependencyFragment extends Fragment implements AddDependency
         tilName = rootView.findViewById(R.id.tilName);
         tilShortName = rootView.findViewById(R.id.tilShortName);
         tilDescription = rootView.findViewById(R.id.tilDescription);
+        addEdit = new AddEdit();
         fabSaveDependency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString(), tilDescription.getEditText().getText().toString());
+                if (addEdit.getMode() == AddEdit.ADD_MODE) {
+                    presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString(), tilDescription.getEditText().getText().toString());
+                }else{
+                    presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString(), tilDescription.getEditText().getText().toString(), d.get_ID());
+                }
             }
         });
         if (getArguments() != null){
-            Dependency d = (Dependency)getArguments().getParcelable("dependencia");
+            d = (Dependency)getArguments().getParcelable("dependencia");
             tilName.getEditText().setText(d.getName());
             tilShortName.getEditText().setText(d.getShortname());
             tilDescription.getEditText().setText(d.getDescription());
-            presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString(), tilDescription.getEditText().getText().toString());
+            addEdit = new AddEdit(AddEdit.EDIT_MODE);
+            //presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString(), tilDescription.getEditText().getText().toString(), d.get_ID());
         }
         return rootView;
     }

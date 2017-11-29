@@ -17,6 +17,8 @@ public interface AddDependencyContract {
     }
 
     interface Presenter extends BasePresenter{
-        void validateDependency(String s, String toString, String string);
+        void validateDependency(String nombre, String nombreCorto, String descripcion);
+
+        void validateDependency(String nombre, String nombreCorto, String descripcion, int id);
     }
 }

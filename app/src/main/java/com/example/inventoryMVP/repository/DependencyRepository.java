@@ -80,4 +80,20 @@ public class DependencyRepository {
         }
         return false;
     }
+
+    public boolean tryModifyDependency(String nombre, String nombreCorto, String descripcion, int id) {
+        int posicion = -1;
+        for (int i = 0; i < dependencies.size(); i++) {
+            if (dependencies.get(i).get_ID() == id){
+                posicion = i;
+            }
+        }
+
+        if (posicion >= 0){
+            Dependency d = new Dependency(id, nombre, nombreCorto, descripcion);
+            dependencies.set(posicion, d);
+            return false;
+        }
+        return true;
+    }
 }

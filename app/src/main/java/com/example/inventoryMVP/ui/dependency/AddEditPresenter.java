@@ -45,4 +45,9 @@ class AddEditPresenter implements AddDependencyContract.Presenter, AddDependency
     public void validateDependency(String nombre, String nombreCorto, String descripcion) {
         addInteractor.validateDependency(nombre, nombreCorto, descripcion, this);
     }
+
+    @Override
+    public void validateDependency(String nombre, String nombreCorto, String descripcion, int id) {
+        addInteractor.validateDependency(nombre, nombreCorto, descripcion, id, this);
+    }
 }
