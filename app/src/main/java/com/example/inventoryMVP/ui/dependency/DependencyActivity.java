@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.example.inventoryMVP.R;
+import com.example.inventoryMVP.pojo.Dependency;
 import com.example.inventoryMVP.ui.base.BaseActivity;
 
 public class DependencyActivity extends BaseActivity implements ListDependencyFragment.ListDependencyListener {
@@ -43,6 +45,24 @@ public class DependencyActivity extends BaseActivity implements ListDependencyFr
         addEditDependency = (AddEditDependencyFragment) fragmentManager.findFragmentByTag(AddEditDependencyFragment.TAG);
         if (addEditDependency  == null){
             addEditDependency = AddEditDependencyFragment.newInstance(null);
+            fragmentTransaction.replace(android.R.id.content, addEditDependency, AddEditDependencyFragment.TAG);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+        addEditPresenter = new AddEditPresenter(addEditDependency);
+
+        addEditDependency.setPresenter(addEditPresenter);
+    }
+
+    @Override
+    public void editDependency(Dependency item) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Bundle b = new Bundle();
+        b.putParcelable("dependencia", item);
+        addEditDependency = (AddEditDependencyFragment) fragmentManager.findFragmentByTag(AddEditDependencyFragment.TAG);
+        if (addEditDependency  == null){
+            addEditDependency = AddEditDependencyFragment.newInstance(b);
             fragmentTransaction.replace(android.R.id.content, addEditDependency, AddEditDependencyFragment.TAG);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();

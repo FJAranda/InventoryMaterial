@@ -1,10 +1,13 @@
 package com.example.inventoryMVP.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by usuario on 25/10/17.
  */
 
-public class Dependency {
+public class Dependency implements Parcelable {
     private int _ID;
     private String name;
     private String shortname;
@@ -52,5 +55,19 @@ public class Dependency {
     @Override
     public String toString() {
         return shortname;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringArray(new String[]{
+                this.name,
+                this.shortname,
+                this.description
+        });
     }
 }

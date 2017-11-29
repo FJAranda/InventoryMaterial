@@ -1,25 +1,27 @@
 package com.example.inventoryMVP.ui.dependency;
 
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+
 import com.example.inventoryMVP.R;
-import com.example.inventoryMVP.adapter.DependencyAdapter;
 import com.example.inventoryMVP.adapter.DependencyAdapterBueno;
 import com.example.inventoryMVP.pojo.Dependency;
 import com.example.inventoryMVP.ui.base.BasePresenter;
 
 import java.util.List;
 
-public class ListDependencyFragment extends ListFragment implements ListDependencyContract.View, AddEditDependencyFragment.AddNewDependencyClickListener {
+public class ListDependencyFragment extends ListFragment implements ListDependencyContract.View, AddEditDependencyFragment.AddNewDependencyClickListener,
+        AddEditDependencyFragment.EditDependencyClickListener, AdapterView.OnItemClickListener {
+
     public static final String TAG = "listdependency";
     DependencyAdapterBueno adapterBueno;
     ListDependencyContract.Presenter presenter;
@@ -42,8 +44,16 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
         this.presenter = (ListDependencyContract.Presenter) presenter;
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Snackbar.make(view, "Pulsado el elemento "+i, Snackbar.LENGTH_LONG).show();
+        callback.editDependency((Dependency)adapterView.getItemAtPosition(i));
+    }
+
     interface ListDependencyListener{
         void addNewDependency();
+
+        void editDependency(Dependency itemAtPosition);
     }
 
     @Override
@@ -89,7 +99,8 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setListAdapter(adapterBueno);;
+        setListAdapter(adapterBueno);
+        getListView().setOnItemClickListener(this);
     }
 
 }

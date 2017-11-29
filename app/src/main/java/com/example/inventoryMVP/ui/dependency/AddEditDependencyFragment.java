@@ -5,11 +5,13 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.inventoryMVP.R;
+import com.example.inventoryMVP.pojo.Dependency;
 import com.example.inventoryMVP.ui.base.BasePresenter;
 
 public class AddEditDependencyFragment extends Fragment implements AddDependencyContract.View, AddDependencyInteractor.OnAddDependencyFinishedListener {
@@ -42,7 +44,11 @@ public class AddEditDependencyFragment extends Fragment implements AddDependency
             }
         });
         if (getArguments() != null){
-            //presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString(), tilDescription.getEditText().getText().toString());
+            Dependency d = (Dependency)getArguments().getParcelable("dependencia");
+            tilName.getEditText().setText(d.getName());
+            tilShortName.getEditText().setText(d.getShortname());
+            tilDescription.getEditText().setText(d.getDescription());
+            presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString(), tilDescription.getEditText().getText().toString());
         }
         return rootView;
     }
@@ -88,6 +94,10 @@ public class AddEditDependencyFragment extends Fragment implements AddDependency
     }
 
     interface AddNewDependencyClickListener{
+        void returnToDependencyList();
+    }
+
+    interface EditDependencyClickListener{
         void returnToDependencyList();
     }
 }

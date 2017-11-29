@@ -13,10 +13,7 @@ class AddEditPresenter implements AddDependencyContract.Presenter, AddDependency
 
     public AddEditPresenter(AddDependencyContract.View view){
         this.view = view;
-    }
-
-    public void validateDependency(String nombre, String nombreCorto, String descripcion, AddDependencyInteractor.OnAddDependencyFinishedListener listener) {
-
+        addInteractor = new AddDependencyInteractorImplement();
     }
 
     @Override
@@ -45,8 +42,7 @@ class AddEditPresenter implements AddDependencyContract.Presenter, AddDependency
     }
 
     @Override
-    public void validateDependency(String s, String toString, String string) {
-        Log.d("entra", "es mentira que entre...");
-        addInteractor.validateDependency(nombre, nombreCorto, descripcion, listener);
+    public void validateDependency(String nombre, String nombreCorto, String descripcion) {
+        addInteractor.validateDependency(nombre, nombreCorto, descripcion, this);
     }
 }
