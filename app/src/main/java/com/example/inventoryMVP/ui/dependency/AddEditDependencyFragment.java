@@ -33,23 +33,23 @@ public class AddEditDependencyFragment extends Fragment implements AddDependency
         View rootView = inflater.inflate(R.layout.fragment_add_edit_dependency, container, false);
         FloatingActionButton fabSaveDependency = rootView.findViewById(R.id.fabSaveDependency);
         tilName = rootView.findViewById(R.id.tilName);
-        tilShortName = rootView.findViewById(R.id.tilSortname);
+        tilShortName = rootView.findViewById(R.id.tilShortName);
         tilDescription = rootView.findViewById(R.id.tilDescription);
         fabSaveDependency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString()
-                , tilDescription.getEditText().getText().toString());
+                presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString(), tilDescription.getEditText().getText().toString());
             }
         });
         if (getArguments() != null){
-            presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString(), tilDescription.getEditText().getText().toString());
+            //presenter.validateDependency(tilName.getEditText().getText().toString(), tilShortName.getEditText().getText().toString(), tilDescription.getEditText().getText().toString());
         }
         return rootView;
     }
 
-    public void setPresenter(BasePresenter presenter){
-        this.presenter = (AddDependencyContract.Presenter)presenter;
+    @Override
+    public void showListDependency() {
+
     }
 
     @Override
@@ -68,6 +68,11 @@ public class AddEditDependencyFragment extends Fragment implements AddDependency
     }
 
     @Override
+    public void onSuccess() {
+
+    }
+
+    @Override
     public void OnSuccess() {
 
     }
@@ -75,5 +80,14 @@ public class AddEditDependencyFragment extends Fragment implements AddDependency
     @Override
     public void showShortNameError() {
         tilShortName.setError("Cadena de descripcion de error de descripcion");
+    }
+
+    @Override
+    public void setPresenter(BasePresenter presenter) {
+        this.presenter = (AddDependencyContract.Presenter) presenter;
+    }
+
+    interface AddNewDependencyClickListener{
+        void returnToDependencyList();
     }
 }

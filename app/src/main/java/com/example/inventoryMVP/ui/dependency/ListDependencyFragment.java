@@ -1,6 +1,7 @@
 package com.example.inventoryMVP.ui.dependency;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,23 +13,53 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.inventoryMVP.R;
 import com.example.inventoryMVP.adapter.DependencyAdapter;
+import com.example.inventoryMVP.adapter.DependencyAdapterBueno;
+import com.example.inventoryMVP.pojo.Dependency;
+import com.example.inventoryMVP.ui.base.BasePresenter;
 
-public class ListDependencyFragment extends ListFragment implements ListDependencyContract.View {
+import java.util.List;
+
+public class ListDependencyFragment extends ListFragment implements ListDependencyContract.View, AddEditDependencyFragment.AddNewDependencyClickListener {
     public static final String TAG = "listdependency";
+    DependencyAdapterBueno adapterBueno;
     ListDependencyContract.Presenter presenter;
     private ListDependencyListener callback;
+
+    @Override
+    public void showDependency(List<Dependency> list) {
+        adapterBueno.clear();
+        adapterBueno.addAll(list);
+    }
+
+    @Override
+    public void returnToDependencyList() {
+        android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.popBackStack();
+    }
+
+    @Override
+    public void setPresenter(BasePresenter presenter) {
+        this.presenter = (ListDependencyContract.Presenter) presenter;
+    }
 
     interface ListDependencyListener{
         void addNewDependency();
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.adapterBueno = new DependencyAdapterBueno(getActivity());
+        setRetainInstance(true);
+    }
+
+    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            callback = (ListDependencyListener) getActivity();
+            callback = (ListDependencyListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(getActivity().getLocalClassName() + " debe implementar ListDependencyListener");
+            throw new ClassCastException(activity.getLocalClassName() + " debe implementar ListDependencyListener");
         }
     }
 
@@ -51,17 +82,14 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
                 callback.addNewDependency();
             }
         });
+        presenter.loadDependency();
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setListAdapter(new DependencyAdapter(getActivity()));
+        setListAdapter(adapterBueno);;
     }
 
-    @Override
-    public void setPresenter(ListDependencyContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
 }

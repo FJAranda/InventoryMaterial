@@ -15,7 +15,7 @@ public class AddDependencyInteractorImplement implements AddDependencyInteractor
     @Override
     public void validateDependency(String nombre, String nombreCorto, String descripcion, OnAddDependencyFinishedListener listener) {
         //Realiza todas las comprobaciones
-        if (DependencyRepository.getInstance().repeatedDependency(nombre, nombreCorto, descripcion)){
+        /*if (DependencyRepository.getInstance().repeatedDependency(nombre, nombreCorto, descripcion)){
             listener.showDependencyExistsError();
         } else if(descripcion.isEmpty()) {
             listener.showDescriptionError();
@@ -25,6 +25,7 @@ public class AddDependencyInteractorImplement implements AddDependencyInteractor
             listener.showShortNameError();
         }else if (DependencyRepository.getInstance().tryAddDependency(nombre, nombreCorto, descripcion)){
             listener.OnSuccess();
-        }
+        }*/
+        DependencyRepository.getInstance().tryAddDependency(nombre, nombreCorto, descripcion);
     }
 }

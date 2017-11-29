@@ -16,29 +16,4 @@ public class AddDependencyPresenter implements AddDependencyContract.Presenter {
     public void validateDependency(String s, String toString, String string) {
 
     }
-
-    @Override
-    public void showListDependency() {
-
-    }
-
-    @Override
-    public void showDescriptionError() {
-
-    }
-
-    @Override
-    public void showNameError() {
-
-    }
-
-    @Override
-    public void showDependencyExistsError() {
-
-    }
-
-    @Override
-    public void onSuccess() {
-
-    }
 }

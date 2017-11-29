@@ -9,15 +9,14 @@ import com.example.inventoryMVP.ui.base.BaseView;
 
 public interface AddDependencyContract {
     interface View extends BaseView{
-
-    }
-
-    interface Presenter extends BasePresenter{
-        void validateDependency(String s, String toString, String string);
         void showListDependency();
         void showDescriptionError();
         void showNameError();
         void showDependencyExistsError();
         void onSuccess();
+    }
+
+    interface Presenter extends BasePresenter{
+        void validateDependency(String s, String toString, String string);
     }
 }

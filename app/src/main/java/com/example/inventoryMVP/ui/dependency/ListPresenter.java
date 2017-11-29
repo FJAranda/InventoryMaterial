@@ -10,4 +10,9 @@ class ListPresenter implements ListDependencyContract.Presenter {
     public ListPresenter(ListDependencyContract.View view){
         this.view = view;
     }
+
+    @Override
+    public void loadDependency() {
+
+    }
 }

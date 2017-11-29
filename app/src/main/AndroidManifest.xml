@@ -19,7 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.inventoryMVP.ui.dependency.addDependencyActivity"/>
         <activity android:name="com.example.inventoryMVP.ui.login.LoginViewImplement" />
         <activity android:name="com.example.inventoryMVP.InventoryActivity" />
         <activity android:name="com.example.inventoryMVP.DashboardActivity" />

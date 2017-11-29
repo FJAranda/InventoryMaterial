@@ -1,9 +1,6 @@
 package com.example.inventoryMVP.ui.dependency;
 
-
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +27,7 @@ public class DependencyActivity extends BaseActivity implements ListDependencyFr
         listDependency = (ListDependencyFragment)fragmentManager.findFragmentByTag(ListDependencyFragment.TAG);
         if (listDependency  == null){
             listDependency = (ListDependencyFragment)ListDependencyFragment.newInstance(null);
-            fragmentTransaction.add(android.R.id.content, listDependency);
+            fragmentTransaction.add(android.R.id.content, listDependency, ListDependencyFragment.TAG);
             fragmentTransaction.commit();
         }
 

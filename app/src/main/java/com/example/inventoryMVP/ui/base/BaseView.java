@@ -8,7 +8,5 @@ import com.example.inventoryMVP.ui.dependency.AddDependencyContract;
 
 public interface BaseView {
 
-    interface Presenter{
-        void setPresenter(AddDependencyContract.Presenter presenter);
-    }
+        void setPresenter(BasePresenter presenter);
 }
