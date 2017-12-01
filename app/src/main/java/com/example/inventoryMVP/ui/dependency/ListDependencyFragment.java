@@ -41,10 +41,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
 
     @Override
     public void updateAdapter() {
-        //Arreglar esto para que lo haga el interactor
         adapterBueno.notifyDataSetChanged();
-        /*List<Dependency> lista = DependencyRepository.getInstance().getDependencies();
-        adapterBueno.addAll(lista);*/
     }
 
     @Override
