@@ -1,5 +1,7 @@
 package com.example.inventoryMVP.ui.dependency;
 
+import com.example.inventoryMVP.pojo.Dependency;
+
 /**
  * Created by usuario on 23/11/17.
  */
@@ -19,6 +21,11 @@ public class AddDependencyPresenter implements AddDependencyContract.Presenter {
 
     @Override
     public void validateDependency(String nombre, String nombreCorto, String descripcion, int id) {
+
+    }
+
+    @Override
+    public void onDestroy() {
 
     }
 }

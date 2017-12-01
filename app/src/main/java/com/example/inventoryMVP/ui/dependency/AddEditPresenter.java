@@ -3,6 +3,8 @@ package com.example.inventoryMVP.ui.dependency;
 import android.os.Debug;
 import android.util.Log;
 
+import com.example.inventoryMVP.pojo.Dependency;
+
 /**
  * Created by usuario on 23/11/17.
  */
@@ -50,4 +52,10 @@ class AddEditPresenter implements AddDependencyContract.Presenter, AddDependency
     public void validateDependency(String nombre, String nombreCorto, String descripcion, int id) {
         addInteractor.validateDependency(nombre, nombreCorto, descripcion, id, this);
     }
+
+    @Override
+    public void onDestroy() {
+        addInteractor = null;
+    }
+
 }

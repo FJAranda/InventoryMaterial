@@ -32,6 +32,14 @@ public class AddEditDependencyFragment extends Fragment implements AddDependency
         return editDependency;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //Como el fragment mantiene el estado (solo se elimina la vista) se debe reinicializar el presenter al crear la vista
+        presenter = new AddEditPresenter(this);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -108,5 +116,17 @@ public class AddEditDependencyFragment extends Fragment implements AddDependency
 
     interface EditDependencyClickListener{
         void returnToDependencyList();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
     }
 }

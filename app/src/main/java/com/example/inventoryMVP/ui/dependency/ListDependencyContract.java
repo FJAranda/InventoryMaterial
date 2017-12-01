@@ -14,9 +14,14 @@ public interface ListDependencyContract {
     interface View extends BaseView {
 
         void showDependency(List<Dependency> list);
+
+        void updateAdapter();
+
+        void showDeleteMessage();
     }
 
     interface Presenter extends BasePresenter{
         void loadDependency();
+        void deleteDependency(Dependency dependency);
     }
 }

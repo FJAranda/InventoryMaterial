@@ -3,6 +3,7 @@ package com.example.inventoryMVP.repository;
 import com.example.inventoryMVP.pojo.Dependency;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by usuario on 26/10/17.
@@ -89,6 +90,7 @@ public class DependencyRepository {
             }
         }
 
+
         if (posicion >= 0){
             Dependency d = new Dependency(id, nombre, nombreCorto, descripcion);
             dependencies.set(posicion, d);
@@ -96,4 +98,28 @@ public class DependencyRepository {
         }
         return true;
     }
+
+    public void tryDeleteDependency(Dependency d) {
+        Iterator<Dependency> iterator = dependencies.iterator();
+        Dependency dependency;
+        while (iterator.hasNext()){
+            dependency = iterator.next();
+            if (dependency.get_ID() == d.get_ID()){
+                iterator.remove();
+                break;
+            }
+        }
+    }
+
+    /*
+    public void deleteDependency(Dependency d){
+        Iterator<Dependency> iterator = dependencies.iterator();
+        Dependency dependency;
+        while (iterator.hasNext()){
+            dependency = iterator.next();
+            if (dependency.get_ID() == d.get_ID()){
+                iterator.remove();
+            }
+        }
+    }*/
 }

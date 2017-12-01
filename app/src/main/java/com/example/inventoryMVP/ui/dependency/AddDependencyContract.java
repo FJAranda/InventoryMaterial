@@ -1,5 +1,6 @@
 package com.example.inventoryMVP.ui.dependency;
 
+import com.example.inventoryMVP.pojo.Dependency;
 import com.example.inventoryMVP.ui.base.BasePresenter;
 import com.example.inventoryMVP.ui.base.BaseView;
 
@@ -20,5 +21,6 @@ public interface AddDependencyContract {
         void validateDependency(String nombre, String nombreCorto, String descripcion);
 
         void validateDependency(String nombre, String nombreCorto, String descripcion, int id);
+
     }
 }

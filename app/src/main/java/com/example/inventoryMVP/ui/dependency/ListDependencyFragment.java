@@ -1,13 +1,17 @@
 package com.example.inventoryMVP.ui.dependency;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,7 +19,9 @@ import android.widget.AdapterView;
 import com.example.inventoryMVP.R;
 import com.example.inventoryMVP.adapter.DependencyAdapterBueno;
 import com.example.inventoryMVP.pojo.Dependency;
+import com.example.inventoryMVP.repository.DependencyRepository;
 import com.example.inventoryMVP.ui.base.BasePresenter;
+import com.example.inventoryMVP.utils.CommonDialog;
 
 import java.util.List;
 
@@ -31,6 +37,19 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     public void showDependency(List<Dependency> list) {
         adapterBueno.clear();
         adapterBueno.addAll(list);
+    }
+
+    @Override
+    public void updateAdapter() {
+        //Arreglar esto para que lo haga el interactor
+        adapterBueno.notifyDataSetChanged();
+        /*List<Dependency> lista = DependencyRepository.getInstance().getDependencies();
+        adapterBueno.addAll(lista);*/
+    }
+
+    @Override
+    public void showDeleteMessage() {
+
     }
 
     @Override
@@ -64,6 +83,13 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     }
 
     @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Opciones lista dependencia");
+        getActivity().getMenuInflater().inflate(R.menu.menu_context_listdependencyfragment, menu);
+    }
+
+    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
@@ -92,7 +118,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
                 callback.addNewDependency();
             }
         });
-        presenter.loadDependency();
+        //presenter.loadDependency();
         return rootView;
     }
 
@@ -101,6 +127,24 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
         super.onViewCreated(view, savedInstanceState);
         setListAdapter(adapterBueno);
         getListView().setOnItemClickListener(this);
+        registerForContextMenu(getListView());
     }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Dependency dependency = (Dependency) getListView().getItemAtPosition(adapterContextMenuInfo.position);
+
+        switch (item.getItemId()) {
+            case R.id.listdependencyfragment_context_delete:
+                Bundle bundle = new Bundle();
+                bundle.putString(CommonDialog.MESSAGE, "Eliminar dependencia?");
+                bundle.putString(CommonDialog.TITLE, "Eliminar dependencia");
+                bundle.putParcelable("dependencia", dependency);
+                Dialog d = CommonDialog.showConfirmDialog(bundle, getActivity(),presenter);
+                d.show();
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
 }

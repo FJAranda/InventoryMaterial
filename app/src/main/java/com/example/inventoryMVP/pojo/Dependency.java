@@ -20,6 +20,25 @@ public class Dependency implements Parcelable {
         this.description = description;
     }
 
+    protected Dependency(Parcel in) {
+        _ID = in.readInt();
+        name = in.readString();
+        shortname = in.readString();
+        description = in.readString();
+    }
+
+    public static final Creator<Dependency> CREATOR = new Creator<Dependency>() {
+        @Override
+        public Dependency createFromParcel(Parcel in) {
+            return new Dependency(in);
+        }
+
+        @Override
+        public Dependency[] newArray(int size) {
+            return new Dependency[size];
+        }
+    };
+
     public int get_ID() {
         return _ID;
     }
