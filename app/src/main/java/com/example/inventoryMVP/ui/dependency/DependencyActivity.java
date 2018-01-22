@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import com.example.inventoryMVP.R;
 import com.example.inventoryMVP.pojo.Dependency;
@@ -16,7 +15,6 @@ public class DependencyActivity extends BaseActivity implements ListDependencyFr
     private ListDependencyContract.Presenter listPresenter;
     private AddEditDependencyFragment addEditDependency;
     private AddDependencyContract.Presenter addEditPresenter;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +22,7 @@ public class DependencyActivity extends BaseActivity implements ListDependencyFr
         setContentView(R.layout.activity_dependency);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Toolbar toolbar = (Toolbar)findViewById(R.id.dependencyToolbar);
         setSupportActionBar(toolbar);
 
         listDependency = (ListDependencyFragment)fragmentManager.findFragmentByTag(ListDependencyFragment.TAG);

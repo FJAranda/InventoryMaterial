@@ -11,6 +11,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,6 +117,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
                 callback.addNewDependency();
             }
         });
+        setHasOptionsMenu(true);
         //presenter.loadDependency();
         return rootView;
     }
@@ -143,5 +146,25 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
                 break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_order_dependency,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.order_by_id:
+                Snackbar.make(getView(), "Has pulsado ordenar por ID", Snackbar.LENGTH_LONG).show();
+                return true;
+            case R.id.order_by_name:
+                Snackbar.make(getView(), "Has pulsado ordenar por NOMBRE", Snackbar.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
