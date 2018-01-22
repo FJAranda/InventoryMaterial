@@ -1,5 +1,8 @@
 package com.example.inventoryMVP.repository;
 
+import android.database.Cursor;
+
+import com.example.inventoryMVP.data.db.DependencyDAO;
 import com.example.inventoryMVP.pojo.Dependency;
 
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ import java.util.Iterator;
 public class DependencyRepository {
     private ArrayList<Dependency> dependencies;
     private static DependencyRepository dependencyRepository;
+    private DependencyDAO dependencyDao;
 
     /*Inicializar todos los atributos static*/
     static {
@@ -26,23 +30,23 @@ public class DependencyRepository {
 
     private void initialize() {
         addDependency(new Dependency(0,"1º Ciclo Formativo de Grado Superior", "1º CFGS",
-                "1CFGS Desarrollo de Aplicaciones Multiplataforma" ));
+                "1CFGS Desarrollo de Aplicaciones Multiplataforma", ""));
         addDependency(new Dependency(1,"2º Ciclo Formativo de Grado Superior", "2º CFGS",
-                "2CFGS Desarrollo de Aplicaciones Multiplataforma" ));
+                "2CFGS Desarrollo de Aplicaciones Multiplataforma", "" ));
         addDependency(new Dependency(2,"2º Ciclo Formativo de Grado Superior", "2º CFGS",
-                "2CFGS Desarrollo de Aplicaciones Multiplataforma" ));
+                "2CFGS Desarrollo de Aplicaciones Multiplataforma", "" ));
         addDependency(new Dependency(3,"2º Ciclo Formativo de Grado Superior", "2º CFGS",
-                "2CFGS Desarrollo de Aplicaciones Multiplataforma" ));
+                "2CFGS Desarrollo de Aplicaciones Multiplataforma", "" ));
         addDependency(new Dependency(4,"2º Ciclo Formativo de Grado Superior", "2º CFGS",
-                "2CFGS Desarrollo de Aplicaciones Multiplataforma" ));
+                "2CFGS Desarrollo de Aplicaciones Multiplataforma", "" ));
         addDependency(new Dependency(5,"2º Ciclo Formativo de Grado Superior", "2º CFGS",
-                "2CFGS Desarrollo de Aplicaciones Multiplataforma" ));
+                "2CFGS Desarrollo de Aplicaciones Multiplataforma", "" ));
         addDependency(new Dependency(6,"2º Ciclo Formativo de Grado Superior", "2º CFGS",
-                "2CFGS Desarrollo de Aplicaciones Multiplataforma" ));
+                "2CFGS Desarrollo de Aplicaciones Multiplataforma", "" ));
         addDependency(new Dependency(7,"2º Ciclo Formativo de Grado Superior", "2º CFGS",
-                "2CFGS Desarrollo de Aplicaciones Multiplataforma" ));
+                "2CFGS Desarrollo de Aplicaciones Multiplataforma", "" ));
         addDependency(new Dependency(8,"2º Ciclo Formativo de Grado Superior", "2º CFGS",
-                "2CFGS Desarrollo de Aplicaciones Multiplataforma" ));
+                "2CFGS Desarrollo de Aplicaciones Multiplataforma", "" ));
 
 
     }
@@ -66,16 +70,33 @@ public class DependencyRepository {
         return dependencies;
     }
 
+    public ArrayList<Dependency> getDependenciesDB(){
+        Cursor cursor = getDependenciesCursor();
+        if (cursor.moveToFirst()){
+            do{
+                Dependency dependency = new Dependency(cursor.getInt(0), cursor.getString(1),
+                        cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                dependencies.add(dependency);
+            }while (cursor.moveToNext());
+        }
+        return dependencies;
+    }
+
+    public Cursor getDependenciesCursor(){
+        return dependencyDao.loadAll();
+
+    }
+
     public boolean tryAddDependency(String nombre, String shortName, String descripcion){
         int id = getDependencies().get(getDependencies().size() - 1).get_ID();
-        Dependency dependency = new Dependency(id +1, nombre, shortName, descripcion);
+        Dependency dependency = new Dependency(id +1, nombre, shortName, descripcion, "");
         addDependency(dependency);
         return false;
     }
 
     public boolean repeatedDependency(String nombre, String shortName, String descripcion) {
         int id = getDependencies().get(getDependencies().size() - 1).get_ID();
-        Dependency dependency = new Dependency(id +1, nombre, shortName, descripcion);
+        Dependency dependency = new Dependency(id +1, nombre, shortName, descripcion, "");
         if (getDependencies().contains(dependency)){
             return true;
         }
@@ -92,7 +113,7 @@ public class DependencyRepository {
 
 
         if (posicion >= 0){
-            Dependency d = new Dependency(id, nombre, nombreCorto, descripcion);
+            Dependency d = new Dependency(id, nombre, nombreCorto, descripcion, "");
             dependencies.set(posicion, d);
             return false;
         }
